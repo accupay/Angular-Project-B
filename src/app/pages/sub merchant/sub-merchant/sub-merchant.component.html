@@ -1,0 +1,314 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card mb-4">
+      <div class="card-body">
+        <form [formGroup]="submerchantregistration" (ngSubmit)="submerchantRegitrationSubmit()">
+          <div class="row">
+            <div class="col-md-6 form-group mb-3">
+              <label class="category">MerchantId</label>
+
+              <ngx-select-dropdown formControlName="merchantId" [config]="MerchantConfig" [options]="MerchantId"
+                (change)="showmerchantname($event)">
+
+              </ngx-select-dropdown>
+
+            </div>
+            <div class="col-md-6 form-group mb-3">
+              <label for="customer_name">Merchant Name</label>
+              <input id="merchantname" class="form-control " disabled formControlName="merchantname" type="text"
+                autocomplete="off" placeholder="Name" value="{{subname}}" />
+
+            </div>
+
+            <div class="col-md-6 form-group mb-3">
+              <label for="customer_name">SubMerchant Name</label>
+              <input id="submerchantname" class="form-control " formControlName="submerchantname" type="text"
+                autocomplete="off" placeholder="Name" [class.is-invalid]="
+                submerchantname.invalid && (submerchantname.dirty || submerchantname.touched)
+            " />
+              <div *ngIf="submerchantname.invalid && (submerchantname.dirty || submerchantname.touched)"
+                class="invalid-feedback">
+                <div *ngIf="submerchantname.errors?.['required']">
+                  This field is required.
+                </div>
+                <div *ngIf="submerchantname.errors?.['minlength']">
+                  This field must have at least 1 character.
+                </div>
+                <div *ngIf="submerchantname.errors?.['maxlength']">
+                  This field must have at most 10 characters.
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 form-group mb-3">
+              <label for="business_name">Business Name</label>
+              <input id="businessname" class="form-control " formControlName="businessname" type="text"
+                autocomplete="off" placeholder="Businessname" [class.is-invalid]="
+              businessname.invalid && (businessname.dirty || businessname.touched)" />
+              <div *ngIf="businessname.invalid && (businessname.dirty || businessname.touched)"
+                class="invalid-feedback">
+                <div *ngIf="businessname.errors?.['required']">
+                  This field is required.
+                </div>
+
+              </div>
+
+            </div>
+            <div class="col-md-6 form-group mb-3">
+              <label for="pincode">Pincode</label>
+              <input class="form-control " id="pincode" placeholder="Pincode" autocomplete="off"
+                formControlName="pincode" (keyup)="pinCodeSubmit($event.target.value)" [class.is-invalid]="
+              pincode.invalid && (pincode.dirty || pincode.touched)" />
+              <div *ngIf="pincode.invalid && (pincode.dirty || pincode.touched)" class="invalid-feedback">
+                <div *ngIf="pincode.errors?.['required']">
+                  This field is required.
+                </div>
+                <div *ngIf="pincode.errors?.['pattern']">
+                  Allows 6 digits only
+                </div>
+
+              </div>
+            </div>
+            
+            <div class="col-md-6 form-group mb-3">
+              <label for="address1">Address</label>
+              <input id="address1" class="form-control " formControlName="address1" autocomplete="off" type="text"
+                placeholder="Address" [class.is-invalid]="
+              address1.invalid && (address1.dirty || address1.touched)" />
+              <div *ngIf="address1.invalid && (address1.dirty || address1.touched)" class="invalid-feedback">
+                <div *ngIf="address1.errors?.['required']">
+                  This field is required.
+                </div>
+
+              </div>
+            </div>
+            <div class="col-md-6 form-group mb-3">
+              <label for="country">Country</label>
+              <ngx-select-dropdown formControlName="country" [config]="CountryConfig" [options]="CountryList"
+              [class.is-invalid]="
+              country.invalid && (country.dirty || country.touched)">
+
+              </ngx-select-dropdown>
+              <div *ngIf="country.invalid && (country.dirty || country.touched)" class="invalid-feedback">
+                <div *ngIf="country.errors?.['required']">
+                  This field is required.
+                </div>
+
+              </div>
+            </div>
+            <div class="col-md-6 form-group mb-3">
+              <label for="state">state</label>
+              <ngx-select-dropdown formControlName="state" [config]="StateConfig" [options]="StateList"
+              [class.is-invalid]="
+              state.invalid && (state.dirty || state.touched)">
+              </ngx-select-dropdown>
+              <div *ngIf="state.invalid && (state.dirty || state.touched)" class="invalid-feedback">
+                <div *ngIf="state.errors?.['required']">
+                  This field is required.
+                </div>
+
+              </div>
+            </div>
+            <div class="col-md-6 form-group mb-3">
+              <label for="city">city</label>
+              <ngx-select-dropdown formControlName="city" [config]="CityConfig" [options]="CityList"
+              [class.is-invalid]="
+              city.invalid && (city.dirty || city.touched)">
+              </ngx-select-dropdown>
+              <div *ngIf="city.invalid && (city.dirty || city.touched)" class="invalid-feedback">
+                <div *ngIf="city.errors?.['required']">
+                  This field is required.
+                </div>
+
+              </div>
+            </div>
+            <div class="col-md-6 form-group mb-3">
+              <label for="location">Location</label>
+              <ngx-select-dropdown formControlName="location" [config]="locationConfig" [options]="locationList"
+              [class.is-invalid]="
+            location.invalid && (location.dirty || location.touched)">
+
+            </ngx-select-dropdown>
+              <div *ngIf="location.invalid && (location.dirty || location.touched)" class="invalid-feedback">
+                <div *ngIf="location.errors?.['required']">
+                  This field is required.
+                </div>
+
+              </div>
+            </div>
+           
+            <div class="col-md-6 form-group mb-3">
+              <label class="category">Category of SubMerchant</label>
+              <ngx-select-dropdown formControlName="category" [config]="CatrgoryConfig" [options]="CategoryList"
+              [class.is-invalid]="
+              category.invalid && (category.dirty || category.touched)">
+
+              </ngx-select-dropdown>
+              <div *ngIf="category.invalid && (category.dirty || category.touched)" class="invalid-feedback">
+                <div *ngIf="category.errors?.['required']">
+                  This field is required.
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="col-md-6 form-group mb-3">
+              <label for="pancard">Pancardnumber</label>
+              <input id="pan" class="form-control " formControlName="pan" type="text" autocomplete="off" Decimalnumeric
+                numericType="number" placeholder="pan number" [class.is-invalid]="
+                  pan.invalid && (pan.dirty || pan.touched)" />
+              <div *ngIf="pan.invalid && (pan.dirty || pan.touched)" class="invalid-feedback">
+                <div *ngIf="pincode.errors?.['required']">
+                  This field is required.
+                </div>
+                <div *ngIf="pincode.errors?.['pattern']">
+                  invalid Pancardnumber
+                </div>
+
+              </div>
+            </div>
+            <div class="col-md-6 form-group mb-3">
+              <label for="business_type">SubMerchant Business Type</label>
+              <ngx-select-dropdown formControlName="mer_business_type" [config]="BusinessConfig"
+                [options]="BusinessType" [class.is-invalid]="
+                mer_business_type.invalid && (mer_business_type.dirty || mer_business_type.touched)">
+              </ngx-select-dropdown>
+              <div *ngIf="mer_business_type.invalid && (mer_business_type.dirty || mer_business_type.touched)"
+                class="invalid-feedback">
+                <div *ngIf="mer_business_type.errors?.['required']">
+                  This field is required.
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="col-md-6 form-group mb-3">
+              <label for="count">Per Day Trsaction Count</label>
+              <input id="transactioncount" class="form-control " formControlName="transactioncount" type="text"
+                autocomplete="off" placeholder="Trsaction Count" [class.is-invalid]="
+              transactioncount.invalid && (transactioncount.dirty || transactioncount.touched)" />
+              <div *ngIf="transactioncount.invalid && (transactioncount.dirty || transactioncount.touched)"
+                class="invalid-feedback">
+                <div *ngIf="transactioncount.errors?.['required']">
+                  This field is required.
+                </div>
+
+              </div>
+            </div>
+            <div class="col-md-6 form-group mb-3">
+              <label for="amount">Per day Transaction Limit (amt)</label>
+              <input id="transactionamount" class="form-control " formControlName="transactionamount" type="text"
+                placeholder="amount" [class.is-invalid]="
+                transactionamount.invalid && (transactionamount.dirty || transactionamount.touched)" />
+              <div *ngIf="transactionamount.invalid && (transactionamount.dirty || transactionamount.touched)"
+                class="invalid-feedback">
+                <div *ngIf="transactionamount.errors?.['required']">
+                  This field is required.
+                </div>
+
+              </div>
+            </div>
+            <div class="col-md-6 form-group mb-3">
+              <label for="limit">Per Transaction Limit</label>
+              <input id="transactionlimit" class="form-control " formControlName="transactionlimit" type="text"
+                placeholder="Limit" [class.is-invalid]="
+                transactionlimit.invalid && (transactionlimit.dirty || transactionlimit.touched)" />
+              <div *ngIf="transactionlimit.invalid && (transactionlimit.dirty || transactionlimit.touched)"
+                class="invalid-feedback">
+                <div *ngIf="transactionlimit.errors?.['required']">
+                  This field is required.
+                </div>
+
+              </div>
+            </div>
+
+            <div class="col-md-6 form-group mb-3">
+              <label for="VPA">VPA</label>
+              <input id="vpa" class="form-control " formControlName="vpa" type="text" autocomplete="off"
+                placeholder="VPA" [class.is-invalid]="
+                vpa.invalid && (vpa.dirty || vpa.touched)" />
+              <div *ngIf="vpa.invalid && (vpa.dirty || vpa.touched)" class="invalid-feedback">
+                <div *ngIf="vpa.errors?.['required']">
+                  This field is required.
+                </div>
+
+              </div>
+            </div>
+            <div class="col-md-6 form-group mb-3">
+              <label for="gstno">GSTIN No</label>
+              <input id="gstno" class="form-control " formControlName="gstno" type="text" autocomplete="off"
+                Decimalnumeric numericType="number" placeholder="GSTIN No" [class.is-invalid]="
+                gstno.invalid && (gstno.dirty || gstno.touched)" />
+              <div *ngIf="gstno.invalid && (gstno.dirty || gstno.touched)" class="invalid-feedback">
+                <div *ngIf="gstno.errors?.['required']">
+                  This field is required.
+                </div>
+                <div *ngIf="gstno.errors?.['pattern']">
+                  Invalid GST No ex(22AAAAA0000A1Z5)
+                </div>
+
+              </div>
+            </div>
+            <div class="col-md-6 form-group mb-3">
+              <label for="mobile_no">Mobile No</label>
+              <input id="mobile_no" class="form-control " formControlName="mobile_no" Decimalnumeric
+                numericType="number" type="text" autocomplete="off" placeholder="Mobile Number" [class.is-invalid]="
+                                mobile_no.invalid && (mobile_no.dirty || mobile_no.touched)" />
+              <div *ngIf="mobile_no.invalid && (mobile_no.dirty || mobile_no.touched)" class="invalid-feedback">
+                <div *ngIf="mobile_no.errors?.['required']">
+                  This field is required.
+                </div>
+                <div *ngIf="mobile_no.errors?.['pattern']">
+                  This field must have at most 10 characters.
+                </div>
+
+              </div>
+            </div>
+            <div class="col-md-6 form-group mb-3">
+              <label for="web_app_url">Web App URl</label>
+              <input id="weburl" class="form-control " formControlName="weburl" type="text" autocomplete="off"
+                placeholder="URL" [class.is-invalid]="
+                weburl.invalid && (weburl.dirty || weburl.touched)" />
+              <div *ngIf="weburl.invalid && (weburl.dirty || weburl.touched)" class="invalid-feedback">
+                <div *ngIf="weburl.errors?.['required']">
+                  This field is required.
+                </div>
+
+              </div>
+            </div>
+            <!-- <div class="col-md-6 form-group mb-3">
+              <label for="User_ref_id">UserId</label>
+              <input id="User_ref_id" class="form-control " formControlName="User_ref_id" type="text"
+                autocomplete="off" placeholder="User_ref_id" [class.is-invalid]="
+                                  User_ref_id.invalid && (User_ref_id.dirty || User_ref_id.touched)" />
+              <div *ngIf="User_ref_id.invalid && (User_ref_id.dirty || User_ref_id.touched)" class="invalid-feedback">
+                <div *ngIf="User_ref_id.errors?.['required']">
+                  This field is required.
+                </div>
+
+              </div>
+
+            </div> -->
+
+
+
+
+            <div class="col-md-12 text-center">
+              <btn-loading btnClass="btn-primary " [loadingText]="loadingText" [loading]="loading">
+                {{ loadingText }}
+              </btn-loading>
+
+              <button type="button" class="btn btn-danger  m-1" (click)="this.submerchantregistration.reset()">
+                Cancel
+              </button>
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

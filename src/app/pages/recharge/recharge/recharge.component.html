@@ -1,0 +1,301 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card mb-4 ">
+            <div class="card-body">
+                <form [formGroup]="rechargeForm">
+                    <div class="row">
+                        <mat-form-field appearance="outline" class="col-md-4 ">
+                            <mat-label>Select Service</mat-label>
+                            <mat-select (selectionChange)="selectionChange(selectterms)" 
+                                [(ngModel)]="selectterms" formControlName="selectservice" 
+                                id="selectservice">
+                                <mat-option >None</mat-option>
+                                <mat-option *ngFor="let listservice of service"
+                                    value={{listservice}}>{{listservice}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="myError('selectservice', 'required')">Select the Service</mat-error>
+                        </mat-form-field>
+                        
+                        <div class="col-md-8 dis-grid">
+                            <div class="row">
+                                <button type="button" class="btn btn-primary btn-rounded ml-3  mt-3"
+                                    (click)="selectvalue($event.target.value)" value="ELECTRICITY">ELECTRICITY</button>
+                                <button type="button" class="btn btn-primary btn-rounded  ml-3 mt-3"
+                                    (click)="selectvalue($event.target.value)"
+                                    value="MOBILEPOSTPAID">MOBILEPOSTPAID</button>
+                                <button type="button" class="btn btn-primary btn-rounded ml-3 mt-3"
+                                    (click)="selectvalue($event.target.value)" value="WATER">WATER</button>
+                                <button type="button" class="btn btn-primary btn-rounded ml-3 mt-3"
+                                    (click)="selectvalue($event.target.value)" value="GAS">GAS</button>
+                                <button type="button" class="btn btn-primary btn-rounded ml-3 mt-3"
+                                    (click)="selectvalue($event.target.value)"
+                                    value="LIFEINSURANCE">LIFEINSURANCE</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row dis-grid">
+            <div *ngIf="rechargeForm.controls.selectservice.value"
+                class="col-md-4 ">
+                <div class="card mb-4 h-100">
+                    <div class="card-header bg-color">
+                        <h5 class="text-white"><b>Customer Details</b></h5>
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]="rechargeForm">
+                            <div class="row">
+                                <mat-form-field appearance="outline" class="col-12">
+                                    <mat-label>Mobile Number</mat-label>
+                                    <input matInput placeholder="Enter mobile number" formControlName="mobile_no"
+                                        id="mobile_no">
+
+                                    <!-- <mat-icon matSuffix>phone_iphone</mat-icon> -->
+                                    <mat-error *ngIf="myError('mobile_no', 'required')">mobile number is
+                                        required</mat-error>
+
+                                    <!-- <mat-hint>Hint</mat-hint> -->
+                                </mat-form-field>
+                            </div>
+                            <div class="row">
+                                <mat-form-field appearance="outline" class="col-12">
+                                    <mat-label>Select Location</mat-label>
+                                    <mat-select formControlName="location" id="location" [(ngModel)]="selectlocation"
+                                        (selectionChange)="scrolldown(selectlocation)">
+                                        <mat-option>none</mat-option>
+                                        <mat-option value="option1">Chennai</mat-option>
+                                        <mat-option value="option2">Madurai</mat-option>
+                                        <mat-option value="option2">Assam</mat-option>
+                                        <mat-option value="option2">Bihar</mat-option>
+                                        <mat-option value="option2">Delhi</mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="myError('location', 'required')">Location is required</mat-error>
+                                    <!-- <mat-icon matSuffix>rss_feed</mat-icon> -->
+                                    <!-- <mat-error *ngIf="myError('operator', 'required')">operator is required</mat-error> -->
+                                </mat-form-field>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="rechargeForm.controls.mobile_no.value && rechargeForm.controls.location.value"
+                class="col-md-4">
+                <div class="card mb-4 h-100">
+                    <div class="card-header bg-color">
+                        <h5 class="text-white"><b>Select Biller</b></h5>
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]="rechargeForm">
+                            <div class="row">
+                                <mat-form-field appearance="outline" class="col-12">
+                                    <mat-label>Select Billers</mat-label>
+                                    <input type="text" placeholder="" matInput [formControl]="biller"
+                                        [matAutocomplete]="auto">
+                                    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete"
+                                        (optionSelected)="billerselect($event)">
+                                        <mat-option *ngFor="let biller of filteredOptions | async" [value]="biller">
+                                            {{biller}}
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="!biller.invalid" class="col-md-4">
+                <div class="card mb-4 h-100">
+                    <div class="card-header bg-color">
+                        <h5 class="text-white"><b>Bill Details</b></h5>
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]="rechargeForm">
+                            <div class="row">
+                                <mat-form-field appearance="outline" class="col-12"
+                                    *ngIf="biller.value =='ashvFinance'">
+                                    <mat-label>{{labelname}}</mat-label>
+                                    <input matInput placeholder="Enter mobile number" formControlName="bpnumber"
+                                        id="bpnumber">
+
+                                    <!-- <mat-icon matSuffix>phone_iphone</mat-icon> -->
+                                    <mat-error *ngIf="myError('bpnumber', 'required')">mobile number is
+                                        required</mat-error>
+
+                                    <!-- <mat-hint>Hint</mat-hint> -->
+                                </mat-form-field>
+
+                            </div>
+                            <div class="row">
+                                <mat-form-field appearance="outline" class="col-12"
+                                    *ngIf="biller.value =='axis Bank Ltd - MCA'">
+                                    <mat-label>{{labelname}}</mat-label>
+                                    <input matInput placeholder="Enter Booking number" formControlName="bpnumber"
+                                        id="bpnumber">
+
+                                    <!-- <mat-icon matSuffix>phone_iphone</mat-icon> -->
+                                    <mat-error *ngIf="myError('bpnumber', 'required')">mobile number is
+                                        required</mat-error>
+
+                                    <!-- <mat-hint>Hint</mat-hint> -->
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="col-12"
+                                    *ngIf="biller.value =='andhra Pragathi Grameena Bank Loan Repayment'">
+                                    <mat-label>{{labelname}}</mat-label>
+                                    <input matInput placeholder="Enter Booking number" formControlName="bpnumber"
+                                        id="bpnumber">
+
+                                    <!-- <mat-icon matSuffix>phone_iphone</mat-icon> -->
+                                    <mat-error *ngIf="myError('bpnumber', 'required')">mobile number is
+                                        required</mat-error>
+
+                                    <!-- <mat-hint>Hint</mat-hint> -->
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="col-12"
+                                    *ngIf="biller.value =='aris Capital Pvt Limited'">
+                                    <mat-label>{{labelname}}</mat-label>
+                                    <input matInput placeholder="Enter Booking number" formControlName="bpnumber"
+                                        id="bpnumber">
+
+                                    <!-- <mat-icon matSuffix>phone_iphone</mat-icon> -->
+                                    <mat-error *ngIf="myError('bpnumber', 'required')">mobile number is
+                                        required</mat-error>
+
+                                    <!-- <mat-hint>Hint</mat-hint> -->
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-12 text-center">
+                                <button class="bg-color" [disabled]="rechargeForm.controls.bpnumber.invalid"
+                                    mat-raised-button color="primary">Fetch Bill</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mobileshow">
+            <mat-tab-group class="nav-center customer-list-tab" #matgroup>
+
+                <mat-tab label="Customer Details">
+
+                    <div class="demo-tab-content mt-10">
+                        <div *ngIf="rechargeForm.controls.selectservice.value"
+                            class="col-md-4  mt-3">
+                            <div class="card mb-4 h-100">
+                                <div class="card-header bg-color">
+                                    <h5 class="text-white"><b>Customer Details</b></h5>
+                                </div>
+                                <div class="card-body">
+                                    <form [formGroup]="rechargeForm">
+                                        <div class="row">
+                                            <mat-form-field appearance="outline" class="col-12">
+                                                <mat-label>Mobile Number</mat-label>
+                                                <input matInput placeholder="Enter mobile number"
+                                                    formControlName="mobile_no" id="mobile_no" [(ngModel)]="mobiledata"
+                                                    (keyup)="selectNext(selectlocation,matgroup,mobiledata)">
+
+                                                <!-- <mat-icon matSuffix>phone_iphone</mat-icon> -->
+                                                <mat-error *ngIf="myError('mobile_no', 'required')">mobile number is
+                                                    required</mat-error>
+
+                                                <!-- <mat-hint>Hint</mat-hint> -->
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="row">
+                                            <mat-form-field appearance="outline" class="col-12">
+                                                <mat-label>Select Location</mat-label>
+                                                <mat-select formControlName="location" id="location"
+                                                    [(ngModel)]="selectlocation"
+                                                    (selectionChange)="selectNext(selectlocation,matgroup,mobiledata)">
+                                                    <mat-option>none</mat-option>
+                                                    <mat-option value="option1">Chennai</mat-option>
+                                                    <mat-option value="option2">Madurai</mat-option>
+                                                    <mat-option value="option2">Assam</mat-option>
+                                                    <mat-option value="option2">Bihar</mat-option>
+                                                    <mat-option value="option2">Delhi</mat-option>
+                                                </mat-select>
+                                                <mat-error *ngIf="myError('location', 'required')">Location is
+                                                    required</mat-error>
+                                                <!-- <mat-icon matSuffix>rss_feed</mat-icon> -->
+                                                <!-- <mat-error *ngIf="myError('operator', 'required')">operator is required</mat-error> -->
+                                            </mat-form-field>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </mat-tab>
+                <mat-tab label="Select Biller">
+                    <div class="demo-tab-content mt-10">
+
+                        <div *ngIf="rechargeForm.controls.mobile_no.value && rechargeForm.controls.location.value"
+                            class="col-md-4 mt-3 ">
+                            <div class="card mb-4 h-100">
+                                <div class="card-header bg-color">
+                                    <h5 class="text-white"><b>Select Biller</b></h5>
+                                </div>
+                                <div class="card-body">
+                                    <form [formGroup]="rechargeForm">
+                                        <div class="row">
+                                            <mat-form-field appearance="outline" class="col-12">
+                                                <mat-label>Select Billers</mat-label>
+                                                <input type="text" placeholder="" matInput [formControl]="biller"
+                                                    [matAutocomplete]="auto" #selbiller>
+                                                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete"
+                                                    (optionSelected)="billerselect($event,matgroup)">
+                                                    <mat-option *ngFor="let biller of filteredOptions | async"
+                                                        [value]="biller">
+                                                        {{biller}}
+                                                    </mat-option>
+                                                </mat-autocomplete>
+                                            </mat-form-field>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Bill Details">
+                    <div class="demo-tab-content mt-10">
+                        <div *ngIf="!biller.invalid" class="col-md-4 mt-3">
+                            <div class="card mb-4 h-100">
+                                <div class="card-header bg-color">
+                                    <h5 class="text-white"><b>Bill Details</b></h5>
+                                </div>
+                                <div class="card-body">
+                                    <form [formGroup]="rechargeForm">
+                                        <div class="row">
+                                            <mat-form-field appearance="outline" class="col-12"
+                                               >
+                                                <mat-label>{{labelname}}</mat-label>
+                                                <input matInput placeholder="Enter mobile number"
+                                                    formControlName="bpnumber" id="bpnumber">
+
+                                                <!-- <mat-icon matSuffix>phone_iphone</mat-icon> -->
+                                                <mat-error *ngIf="myError('bpnumber', 'required')">mobile number is
+                                                    required</mat-error>
+
+                                                <!-- <mat-hint>Hint</mat-hint> -->
+                                            </mat-form-field>
+
+                                        </div>
+                                        
+
+                                        <div class="col-12 text-center">
+                                            <button class="bg-color" [disabled]="rechargeForm.controls.bpnumber.invalid"
+                                                mat-raised-button color="primary">Fetch Bill</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,122 @@
+<div class="container-fluid" id="main" >
+
+  <div class="row row-offcanvas row-offcanvas-left">
+   <div class="col main">
+     <div class="row mb-3">
+        <div class="col-xl-3 col-sm-6 py-2" >
+          <div class="card text-white h-100"  style="background-color: darkcyan;">
+            <div class="card-body">
+              <div class="rotate">
+                <i class="fa fa-user fa-4x"></i>
+              </div>
+              <h6 class="display-4"> {{ total_merchants? total_merchants:"0"}}</h6>
+              <h5 class="text-uppercase">Total Merchant</h5>
+             
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 py-2">
+          <div class="card text-white  h-100" style="background-color: forestgreen;">
+            <div class="card-body " >
+              <div class="rotate">
+                <i class="fa fa-list fa-4x"></i>
+              </div>
+              <h6 class="display-4"> {{ total_submerchants? total_submerchants:"0"}}</h6>
+              <h5 class="text-uppercase">Total Submerchants</h5>
+
+              <!-- <h6 class="text-uppercase">Total Submerchants</h6>
+              <h1 class="display-4">{{total_submerchants? total_submerchants : "0"}}</h1> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 py-2">
+          <div class="card text-white bg-warning h-100">
+            <div class="card-body " >
+              <div class="rotate">
+                <i class="fa fa-twitter fa-4x"></i>
+              </div>
+              <h6 class="display-4"> {{ current_month_added_merchants? current_month_added_merchants:"0"}}</h6>
+              <h5 class="text-uppercase">Current Month Added Merchant</h5>
+
+              <!-- <h6 class="text-uppercase">Current Month Added Merchant</h6>
+              <h1 class="display-4">{{current_month_added_merchants? current_month_added_merchants: "0" }}</h1> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 py-2">
+          <div class="card text-white bg-danger h-100">
+            <div class="card-body ">
+              <div class="rotate">
+                <i class="fa fa-share fa-4x"></i>
+              </div>
+              <h6 class="display-4"> {{ current_month_added_submerchant? current_month_added_submerchant:"0"}}</h6>
+              <h5 class="text-uppercase">Current Month Added Submerchant</h5>
+
+              <!-- <h6 class="text-uppercase">Current Month Added Submerchant</h6>
+              <h1 class="display-4">{{ current_month_added_submerchant? current_month_added_submerchant:"0"}}</h1> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 py-2">
+          <div class="card text-white h-100"  style="background-color: darkcyan;">
+            <div class="card-body ">
+              <div class="rotate">
+                <i class="fa fa-user fa-4x"></i>
+              </div>
+              <h6 class="display-4"> {{ total_transaction_count? total_transaction_count:"0"}}</h6>
+              <h5 class="text-uppercase">total transaction count</h5>
+
+              <!-- <h6 class="text-uppercase">total transaction count</h6>
+              <h1 class="display-4">{{total_transaction_count? total_transaction_count:"0" }}</h1> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 py-2">
+          <div class="card text-white  h-100" style="background-color: forestgreen;">
+            <div class="card-body ">
+              <div class="rotate">
+                <i class="fa fa-user fa-4x"></i>
+              </div>
+              <h6 class="display-4"> {{ total_transaction_values? total_transaction_values:"0"}}</h6>
+              <h5 class="text-uppercase">total tansaction values</h5>
+
+              <!-- <h6 class="text-uppercase">total tansaction values</h6>
+              <h1 class="display-4">{{total_transaction_values? total_transaction_values:"0"}}</h1> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 py-2">
+          <div class="card text-white bg-warning h-100">
+            <div class="card-body ">
+              <div class="rotate">
+                <i class="fa fa-user fa-4x"></i>
+              </div>
+              <h6 class="display-4"> {{ current_month_transaction_count? current_month_transaction_count:"0"}}</h6>
+              <h5 class="text-uppercase">current month transaction count</h5>
+
+              <!-- <h6 class="text-uppercase">current month transaction count</h6>
+              <h1 class="display-4">{{current_month_transaction_count?current_month_transaction_count:"0"}}</h1> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 py-2">
+          <div class="card bg-danger text-white h-100">
+            <div class="card-body ">
+              <div class="rotate">
+                <i class="fa fa-user fa-4x"></i>
+              </div>
+              <h6 class="display-4"> {{current_month_transaction_value? current_month_transaction_value:"0"}}</h6>
+              <h5 class="text-uppercase">current month transaction value</h5>
+
+              <!-- <h6 class="text-uppercase">current month transaction value</h6>
+              <h1 class="display-4">{{current_month_transaction_value? current_month_transaction_value:"0"}}</h1> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/row-->
+
+
+    </div>
+  </div>
+</div>

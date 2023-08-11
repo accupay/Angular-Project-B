@@ -1,0 +1,102 @@
+<div class="modal-body">
+  <h5>Find IFSC Code!</h5>
+  <br />
+  <div class="row">
+    <div class="col-md-12">
+      <div class="col-md-12 mb-3">
+        <form [formGroup]="checkIfscForm">
+          <div class="col-md-12 form-group mb-3">
+            <label for="city">Bank Type</label>
+            <ngx-select-dropdown
+              [config]="bankTypeConfig"
+              [options]="bankTypeList"
+              formControlName="bankType"
+              (change)="getBankList($event.value.id)"
+            >
+            </ngx-select-dropdown>
+          </div>
+
+          <hr />
+          <div class="col-md-12 form-group mb-3">
+            <label for="city">Bank</label>
+            <ngx-select-dropdown
+              [config]="bankListConfig"
+              [options]="bankList"
+              formControlName="bank_ref_id"
+              (change)="getBankState($event.value.bank_ref_id)"
+            >
+            </ngx-select-dropdown>
+          </div>
+
+          <div class="col-md-12 form-group mb-3">
+            <label for="city">State</label>
+            <ngx-select-dropdown
+              [config]="bankStateListConfig"
+              [options]="bankStateList"
+              formControlName="state_ref_id"
+              (change)="getBankCity($event)"
+            >
+            </ngx-select-dropdown>
+          </div>
+
+          <div class="col-md-12 form-group mb-3">
+            <label for="city">City</label>
+            <ngx-select-dropdown
+              [config]="bankCityListConfig"
+              [options]="bankCityList"
+              formControlName="cityRefID"
+              (change)="getBankBranch($event)"
+            >
+            </ngx-select-dropdown>
+          </div>
+
+          <div class="col-md-12 form-group mb-3">
+            <label for="city">Branch</label>
+            <ngx-select-dropdown
+              [config]="bankBranchListConfig"
+              [options]="bankBranchList"
+              formControlName="ifsc_code"
+              (change)="getBankIfscLookUp($event)"
+            >
+            </ngx-select-dropdown>
+          </div>
+        </form>
+
+        <div class="card mb-4 o-hidden" *ngIf="ifscDetails.length">
+          <div class="card-body" *ngFor="let ifsc of ifscDetails">
+            <h5 class="card-title text-center text-info">
+              <strong>IFSC CODE :</strong> {{ ifsc.ifsc_code }}
+            </h5>
+            <p class="card-text">
+              <strong>Address :</strong> {{ ifsc.address }}
+            </p>
+          </div>
+        </div>
+
+        <p
+          *ngIf="checkValidIfscErrorText"
+          class="invalid-feedback text-12 text-center"
+        >
+          Please select above fields to fetch IFSC Code...
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-outline-secondary btn-rounded"
+    (click)="close()"
+  >
+    Cancel
+  </button>
+  <btn-loading
+    btnClass="btn-primary btn-rounded"
+    [loadingText]="loadingText"
+    [loading]="loading"
+    (click)="confirm()"
+  >
+    {{ loadingText }}
+  </btn-loading>
+</div>

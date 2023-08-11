@@ -1,0 +1,770 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="card mb-4 h-150">
+                    <div class="card-body">
+
+                        <form>
+                            <!-- <div class="row">
+                        <mat-radio-group>
+                            <mat-radio-button style="margin-left: 20px;" (change)="checkValue($event)" [checked]="true"
+                            formControlName="returndate" class="example-margin" value="one">One
+                            Way
+                            </mat-radio-button>
+                            <mat-radio-button style="margin-left: 20px;" (change)="checkValue($event)"
+                            class="example-margin" value="round">Round
+                            Trip
+                            </mat-radio-button>
+                            <mat-radio-button style="margin-left: 20px;" (change)="checkValue($event)"
+                            class="example-margin" value="splround">Special Round Trip 
+                            </mat-radio-button>
+                        </mat-radio-group>
+                    </div> -->
+                            <mat-tab-group dynamicHeight>
+                                <mat-tab>
+                                    <ng-template mat-tab-label>
+                                        <mat-icon class="example-tab-icon">trending_flat</mat-icon>
+                                        One Way
+                                    </ng-template>
+                                    <div class="example-large-box mat-elevation-z4">
+                                        <div class="row">
+                                            <mat-form-field appearance="outline" class=" col-md-5 mt-4">
+                                                <mat-label>From</mat-label>
+                                                <mat-select>
+                                                    <mat-option>None</mat-option>
+                                                    <mat-option value="option1">Chennai</mat-option>
+                                                    <mat-option value="option2">Madurai</mat-option>
+                                                    <mat-option value="option3">Delhi</mat-option>
+                                                    <mat-option value="option3">Mumbai</mat-option>
+                                                    <mat-option value="option3">Goa</mat-option>
+                                                </mat-select>
+                                                <mat-icon matSuffix>flight_takeoff</mat-icon>
+                                            </mat-form-field>
+                                            <span style="margin-top: 35px;" class="col text-center">
+                                                <mat-icon>swap_horiz</mat-icon>
+                                            </span>
+                                            <mat-form-field appearance="outline" class="col-md-5 mt-4">
+                                                <mat-label>To</mat-label>
+                                                <mat-select>
+                                                    <mat-option>None</mat-option>
+                                                    <mat-option value="option1">Chennai</mat-option>
+                                                    <mat-option value="option2">Madurai</mat-option>
+                                                    <mat-option value="option3">Delhi</mat-option>
+                                                    <mat-option value="option3">Mumbai</mat-option>
+                                                    <mat-option value="option3">Goa</mat-option>
+                                                </mat-select>
+                                                <mat-icon matSuffix>flight_land</mat-icon>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="row">
+                                            <mat-form-field appearance="outline" class="col-md-6 mt-4">
+                                                <mat-label>Departure Date</mat-label>
+                                                <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker"
+                                                    [formControl]="fromDate">
+                                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                                <mat-datepicker #picker></mat-datepicker>
+                                            </mat-form-field>
+                                            <!-- <mat-form-field appearance="outline"
+                                                class="atp-mat-date-picker col-md-6 mt-4">
+                                                <mat-label>Return Date</mat-label>
+                                                <input matInput placeholder="" [max]="maxDate" [matDatepicker]="dp2"
+                                                    [(ngModel)]="toDate" />
+                                                <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+                                                <mat-datepicker #dp2 disabled="true"></mat-datepicker>
+                                            </mat-form-field> -->
+                                        </div>
+                                        <label><b>Travellers & Cabin Class</b></label><br>
+                                        <div class="row ml-1">
+                                            <mat-accordion>
+                                                <mat-expansion-panel [(expanded)]="panelOpenState">
+                                                    <mat-expansion-panel-header>
+                                                        <mat-panel-title>
+                                                            {{adultnumber}} Adults, {{childnumber}}
+                                                            Children, {{infantnumber}} Infants,
+                                                            <mat-icon>airline_seat_recline_extra</mat-icon>{{cabinclass}}
+                                                            <hr>
+                                                        </mat-panel-title>
+                                                        <mat-panel-description>
+                                                        </mat-panel-description>
+                                                    </mat-expansion-panel-header>
+                                                    <div class="row align-items-start mt-2">
+                                                        <div class="col">
+                                                            <label>Adults 12+ years</label><br>
+                                                        </div>
+                                                        <div class="col" style="text-align: right;">
+                                                            <button type="button" class="btn btn-dark"
+                                                                (click)="adult('min')"><strong>-</strong></button>
+                                                            <input class="inputbox" value="{{adultnumber}}" disabled>
+                                                            <button type="button" class="btn btn-dark"
+                                                                (click)="adult('max')"><strong>+</strong></button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row align-items-center mt-2">
+                                                        <div class="col">
+                                                            <label>Children 2-12 years</label><br>
+                                                        </div>
+                                                        <div class="col" style="text-align: right;">
+                                                            <button type="button" class="btn btn-dark"
+                                                                (click)="child('min')"><strong>-</strong></button>
+                                                            <input class="inputbox" value="{{childnumber}}" disabled>
+                                                            <button type="button" class="btn btn-dark"
+                                                                (click)="child('max')"><strong>+</strong></button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row align-items-end mt-2">
+                                                        <div class="col">
+                                                            <label>Infants 0-2</label><br>
+                                                        </div>
+                                                        <div class="col" style="text-align: right;">
+                                                            <button type="button" class="btn btn-dark"
+                                                                (click)="infant('min')"><strong>-</strong></button>
+                                                            <input class="inputbox" value="{{infantnumber}}" disabled>
+                                                            <button type="button" class="btn btn-dark"
+                                                                (click)="infant('max')"><strong>+</strong></button>
+                                                        </div>
+                                                    </div>
+                                                    <label class="mt-2">
+                                                        <h4><b>Class</b></h4>
+                                                    </label><br>
+                                                    <mat-radio-group>
+                                                        <mat-radio-button (change)="checkValue($event)" [checked]="true"
+                                                            formControlName="returndate" class="example-margin"
+                                                            value="Economy">Economy
+                                                        </mat-radio-button>
+                                                        <hr>
+                                                        <mat-radio-button (change)="checkValue($event)"
+                                                            class="example-margin" value="Premium Economy">Premium
+                                                            Economy
+                                                        </mat-radio-button>
+                                                        <hr>
+                                                        <mat-radio-button (change)="checkValue($event)"
+                                                            class="example-margin" value="Business Class">Business
+                                                            Class
+                                                        </mat-radio-button>
+                                                        <hr>
+                                                    </mat-radio-group>
+                                                    <div class="text-center">
+                                                        <button type="button" class="btn btn-light"
+                                                            (click)="closepanel()">Done</button>
+                                                    </div>
+                                                </mat-expansion-panel>
+                                            </mat-accordion>
+                                        </div>
+                                        <!-- <input type="text" class="form-control" disabled value="{{adultnumber}} Adults,{{childnumber}} Children,{{infantnumber}} Infants"> -->
+
+                                        <!-- <div class="row"> -->
+                                        <!-- <mat-form-field appearance="outline" class="col-md-6 mt-4">
+                                            <mat-label>Class</mat-label>
+                                            <mat-select>
+                                                <mat-option *ngFor="let topping of travels"
+                                                    [value]="topping">{{topping}}</mat-option>
+                                            </mat-select>
+                                        </mat-form-field> -->
+                                        <!-- </div> -->
+                                        <div class="col-md-12 mt-4 text-center">
+                                            <button class="bg-color" mat-raised-button color="primary" (click)="searchflight()">Search
+                                                Flight</button>
+                                        </div>
+                                    </div>
+                                </mat-tab>
+                                <mat-tab>
+                                    <ng-template mat-tab-label>
+                                        <mat-icon class="example-tab-icon">360</mat-icon>
+                                        Round Trip
+                                    </ng-template>
+                                    <div class="example-large-box mat-elevation-z4">
+                                        <div class="row">
+                                            <mat-form-field appearance="outline" class="col-md-5 mt-4">
+                                                <mat-label>From</mat-label>
+                                                <mat-select>
+                                                    <mat-option>None</mat-option>
+                                                    <mat-option value="option1">Chennai</mat-option>
+                                                    <mat-option value="option2">Madurai</mat-option>
+                                                    <mat-option value="option3">Delhi</mat-option>
+                                                    <mat-option value="option3">Mumbai</mat-option>
+                                                    <mat-option value="option3">Goa</mat-option>
+                                                </mat-select>
+                                                <mat-icon matSuffix>flight_takeoff</mat-icon>
+                                            </mat-form-field>
+                                            <span style="margin-top: 35px;" class="col text-center">
+                                                <mat-icon>swap_horiz</mat-icon>
+                                            </span>
+                                            <mat-form-field appearance="outline" class="col-md-5 mt-4">
+                                                <mat-label>To</mat-label>
+                                                <mat-select>
+                                                    <mat-option>None</mat-option>
+                                                    <mat-option value="option1">Chennai</mat-option>
+                                                    <mat-option value="option1">Madurai</mat-option>
+                                                    <mat-option value="option1">Delhi</mat-option>
+                                                    <mat-option value="option2">Mumbai</mat-option>
+                                                    <mat-option value="option3">Goa</mat-option>
+                                                </mat-select>
+                                                <mat-icon matSuffix>flight_land</mat-icon>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="row">
+                                            <mat-form-field appearance="outline"
+                                                class="atp-mat-date-picker col-md-6 mt-4">
+                                                <mat-label>Departure Date</mat-label>
+                                                <input matInput [matDatepicker]="dp3" placeholder="" [min]="minDate"
+                                                    [max]="maxDate" [formControl]="fromDate" />
+                                                <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+                                                <mat-datepicker #dp3></mat-datepicker>
+                                            </mat-form-field>
+                                            <mat-form-field appearance="outline"
+                                                class="atp-mat-date-picker col-md-6 mt-4">
+                                                <mat-label>Return Date</mat-label>
+                                                <input matInput placeholder="" [min]="minDate" [max]="maxDate"
+                                                    [matDatepicker]="dp4" [formControl]="fromDate" />
+                                                <mat-datepicker-toggle matSuffix [for]="dp4"></mat-datepicker-toggle>
+                                                <mat-datepicker #dp4></mat-datepicker>
+                                            </mat-form-field>
+                                        </div>
+                                        <label><b>Travellers & Cabin Class</b></label><br>
+                                        <div class="row ml-1">
+                                            <mat-accordion>
+                                                <mat-expansion-panel [(expanded)]="panelOpenState">
+                                                    <mat-expansion-panel-header>
+                                                        <mat-panel-title>
+                                                            {{adultnumber}} Adults, {{childnumber}}
+                                                            Children,{{infantnumber}} Infants,
+                                                            <mat-icon>airline_seat_recline_extra</mat-icon>{{cabinclass}}
+                                                            <hr>
+                                                        </mat-panel-title>
+                                                        <mat-panel-description>
+                                                        </mat-panel-description>
+                                                    </mat-expansion-panel-header>
+                                                    <div class="row align-items-start mt-2">
+                                                        <div class="col">
+                                                            <label>Adults 12+ years</label><br>
+                                                        </div>
+                                                        <div class="col" style="text-align: right;">
+                                                            <button type="button" class="btn btn-dark"
+                                                                (click)="adult('min')"><strong>-</strong></button>
+                                                            <input class="inputbox" value="{{adultnumber}}" disabled>
+                                                            <button type="button" class="btn btn-dark"
+                                                                (click)="adult('max')"><strong>+</strong></button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row align-items-center mt-2">
+                                                        <div class="col">
+                                                            <label>Children 2-12 years</label><br>
+                                                        </div>
+                                                        <div class="col" style="text-align: right;">
+                                                            <button type="button" class="btn btn-dark"
+                                                                (click)="child('min')"><strong>-</strong></button>
+                                                            <input class="inputbox" value="{{childnumber}}" disabled>
+                                                            <button type="button" class="btn btn-dark"
+                                                                (click)="child('max')"><strong>+</strong></button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row align-items-end mt-2">
+                                                        <div class="col">
+                                                            <label>Infants 0-2</label><br>
+                                                        </div>
+                                                        <div class="col" style="text-align: right;">
+                                                            <button type="button" class="btn btn-dark"
+                                                                (click)="infant('min')"><strong>-</strong></button>
+                                                            <input class="inputbox" value="{{infantnumber}}" disabled>
+                                                            <button type="button" class="btn btn-dark"
+                                                                (click)="infant('max')"><strong>+</strong></button>
+                                                        </div>
+                                                    </div>
+                                                    <label class="mt-2">
+                                                        <h4><b>Class</b></h4>
+                                                    </label><br>
+                                                    <mat-radio-group>
+                                                        <mat-radio-button (change)="checkValue($event)" [checked]="true"
+                                                            formControlName="returndate" class="example-margin"
+                                                            value="Economy">Economy
+                                                        </mat-radio-button>
+                                                        <hr>
+                                                        <mat-radio-button (change)="checkValue($event)"
+                                                            class="example-margin" value="Premium Economy">Premium
+                                                            Economy
+                                                        </mat-radio-button>
+                                                        <hr>
+                                                        <mat-radio-button (change)="checkValue($event)"
+                                                            class="example-margin" value="Business Class">Business
+                                                            Class
+                                                        </mat-radio-button>
+                                                        <hr>
+                                                    </mat-radio-group>
+                                                    <div class="text-center">
+                                                        <button type="button" class="btn btn-light"
+                                                            (click)="closepanel()">Done</button>
+                                                    </div>
+                                                </mat-expansion-panel>
+                                            </mat-accordion>
+                                        </div>
+                                        <!-- <input type="text" class="form-control" disabled
+                                            value="{{adultnumber}} Adults,{{childnumber}} Children,{{infantnumber}} Infants">
+
+                                        <div class="row">
+                                            <div class="col-md-4 mt-2 text-center">
+
+                                                <label>Adults 12+ years</label><br>
+                                                <button type="button" class="btn btn-dark"
+                                                    (click)="adult('min')"><strong>-</strong></button>
+                                                <input class="inputbox" value="{{adultnumber}}" disabled>
+                                                <button type="button" class="btn btn-dark"
+                                                    (click)="adult('max')"><strong>+</strong></button>
+                                            </div>
+                                            <div class="col-md-4 mt-2 text-center">
+                                                <label>Children 2-12 years</label><br>
+                                                <button type="button" class="btn btn-dark"
+                                                    (click)="child('min')"><strong>-</strong></button>
+                                                <input class="inputbox" value="{{childnumber}}" disabled>
+                                                <button type="button" class="btn btn-dark"
+                                                    (click)="child('max')"><strong>+</strong></button>
+                                            </div>
+                                            <div class="col-md-4 mt-2 text-center">
+                                                <label>Infants 0-2</label><br>
+                                                <button type="button" class="btn btn-dark"
+                                                    (click)="infant('min')"><strong>-</strong></button>
+                                                <input class="inputbox" value="{{infantnumber}}" disabled>
+                                                <button type="button" class="btn btn-dark"
+                                                    (click)="infant('max')"><strong>+</strong></button>
+                                            </div>
+
+
+                                            <mat-form-field appearance="outline" class="col-md-6 mt-4">
+                                                <mat-label>Class</mat-label>
+                                                <mat-select>
+                                                    <mat-option *ngFor="let topping of travels"
+                                                        [value]="topping">{{topping}}</mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div> -->
+                                        <div class="col-md-12 mt-4 text-center">
+                                            <button class="bg-color" mat-raised-button color="primary" (click)="searchflight()">Search
+                                                Flight</button>
+                                        </div>
+                                    </div>
+                                </mat-tab>
+                            </mat-tab-group>
+                            <!-- <mat-tab-group class="nav-center customer-list-tab" #matgroup>
+
+                        <mat-tab label="One
+                        Way">
+        
+                            <div class="demo-tab-content mt-10">
+                                
+                            </div>
+                        </mat-tab>
+                        <mat-tab label="Round
+                        Trip" >
+        
+                            <div class="demo-tab-content mt-10" style="overflow: hidden;">
+                                
+                            </div>
+                        </mat-tab>
+                       
+                    </mat-tab-group> -->
+                            <!-- <div class="row" *ngIf="roundtrip">
+                        <mat-form-field class="col-md-2 mt-4">
+                            <mat-label>From</mat-label>
+                            <mat-select>
+                                <mat-option>None</mat-option>
+                                <mat-option value="option1">Option 1</mat-option>
+                                <mat-option value="option2">Option 2</mat-option>
+                                <mat-option value="option3">Option 3</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    
+                    <div class="" style="margin-top: 36px;">
+                        <mat-icon>swap_horiz</mat-icon>
+                    </div>
+                    
+                        <mat-form-field class="col-md-2 mt-4">
+                            <mat-label>To</mat-label>
+                            <mat-select>
+                                <mat-option>None</mat-option>
+                                <mat-option value="option1">Option 1</mat-option>
+                                <mat-option value="option2">Option 2</mat-option>
+                                <mat-option value="option3">Option 3</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                
+                     
+                        <mat-form-field  class="atp-mat-date-picker col-md-2 mt-4">
+                            <input matInput [matDatepicker]="dp1" placeholder="Departure Date" [max]="maxDate"
+                                [(ngModel)]="fromDate" (click)="dp1.open()" />
+                            <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+                            <mat-datepicker #dp1></mat-datepicker>
+                        </mat-form-field>
+                    
+                    
+                        <mat-form-field class="atp-mat-date-picker col-md-2 mt-4">
+                            <input matInput placeholder="Return Date" [max]="maxDate" [matDatepicker]="dp2"
+                                [(ngModel)]="toDate" (click)="dp2.open()" />
+                            <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+                            <mat-datepicker #dp2></mat-datepicker>
+                        </mat-form-field>
+
+                        <mat-form-field class="col-md-2 mt-4">
+                            <mat-label>Travellers,Class</mat-label>
+                            <mat-select  multiple>
+                              <mat-option *ngFor="let topping of travels" [value]="topping">{{topping}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    <div class="col-md-12 mt-2 text-center">    
+                        <button class="bg-color" 
+                        mat-raised-button color="primary">Search Flight</button>
+                    </div>
+
+                    </div> -->
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7" *ngIf="FlightList">
+                <div class="card mb-4 h-150">
+                    <div class="card-body">
+                        <label>
+                            <h4><b>Flight List</b></h4>
+                        </label><br>
+                        <!-- <mat-form-field class="col-12">
+                            <input matInput id="last_name" class="" type="search" placeholder="Search" />
+                            <mat-icon matSuffix>search</mat-icon>
+                        </mat-form-field> -->
+                        <mat-tab-group dynamicHeight>
+                            <mat-tab>
+                                <ng-template mat-tab-label>
+                                    <div class="col">
+                                        <span><b>Aug 7, Sun</b></span><br>
+                                        <span><b>&#8377; 4,180</b></span>
+                                    </div>
+                                </ng-template>
+                            </mat-tab>
+                            <mat-tab>
+                                <ng-template mat-tab-label>
+                                    <div class="col">
+                                        <span><b>Aug 8, Sun</b></span><br>
+                                        <span><b>&#8377; 4,180</b></span>
+                                    </div>
+                                </ng-template>
+                            </mat-tab>
+                            <mat-tab>
+                                <ng-template mat-tab-label>
+                                    <div class="col">
+                                        <span><b>Aug 9, Sun</b></span><br>
+                                        <span><b>&#8377; 4,180</b></span>
+                                    </div>
+                                </ng-template>
+                            </mat-tab>
+                            <mat-tab>
+                                <ng-template mat-tab-label>
+                                    <div class="col">
+                                        <span><b>Aug 10, Sun</b></span><br>
+                                        <span><b>&#8377; 4,180</b></span>
+                                    </div>
+                                </ng-template>
+                            </mat-tab>
+                            <mat-tab>
+                                <ng-template mat-tab-label>
+                                    <div class="col">
+                                        <span><b>Aug 11, Sun</b></span><br>
+                                        <span><b>&#8377; 4,180</b></span>
+                                    </div>
+                                </ng-template>
+                            </mat-tab>
+                            <mat-tab>
+                                <ng-template mat-tab-label>
+                                    <div class="col">
+                                        <span><b>Aug 12, Sun</b></span><br>
+                                        <span><b>&#8377; 4,180</b></span>
+                                    </div>
+                                </ng-template>
+                            </mat-tab>
+                        </mat-tab-group>
+                        <div class="card mt-3">
+                            <div class="card-body">
+                                <!-- <div class="col text-center">
+                                        <span>
+                                            <h5><b>IndiGo</b></h5>
+                                     </span>
+                                     <label>Airlines</label>
+                                    </div> -->
+                                <div class="row text-center">
+                                    <div class="col">
+                                        <span>
+                                            <h5><b>IndiGo</b></h5>
+                                        </span>
+                                        <label>Airlines</label>
+
+                                    </div>
+                                    <div class="col ">
+                                        <span>
+                                            <h5><b>21:45</b></h5>
+                                        </span>
+                                        <label>Chennai</label>
+                                    </div>
+                                    <div class="col">
+                                        <span>
+                                            <h5><b>8h 35m</b></h5>
+                                        </span>
+                                        <span>Non stop</span>
+                                    </div>
+                                    <div class="col">
+                                        <span>
+                                            <h5><b>02:15</b></h5>
+                                        </span>
+                                        <label>Madurai</label>
+                                    </div>
+                                    <div class="col">
+                                        <span>
+                                            <h5><b>&#8377; 4,181</b></h5>
+                                        </span>
+                                        <label>Price</label>
+                                    </div>
+                                    <div class="col">
+                                        <button mat-stroked-button color="primary">View Fare</button>
+
+                                    </div>
+                                </div>
+                                <!-- <hr>   
+                                <div class="row text-center">
+                                    <div class="col">
+                                       <mat-icon>calendar_today</mat-icon>
+                                        <span>
+                                               <h5><b>May 30,2023</b></h5>
+                                        </span>
+                                        <label>Date</label>
+                                    </div>
+                                    <div class="col">
+                                        <mat-icon>access_time</mat-icon>
+                                        <span>
+                                               <h5><b>08.00-09.30</b></h5>
+                                        </span>
+                                        <label>Time</label>
+                                    </div>
+                                    <div class="col">
+                                        <br>
+                                        <span>
+                                               <h5><b>2345V</b></h5>
+                                        </span>
+                                        <label>Flight</label>
+                                    </div>
+                                </div>
+                                <hr> -->
+                                <!-- <div class="row text-center">
+                                    <div class="col">
+                                        <span>
+                                               <h5><b>4Adults, 2Childs</b></h5>
+                                        </span>
+                                        <label>Passengers</label>
+                                    </div>
+                                    <div class="col">
+                                        <span>
+                                               <h5><b>Economy</b></h5>
+                                        </span>
+                                        <label>Class</label>
+                                    </div>
+                                    <div class="col">
+                                        <span>
+                                               <h5><b>A23</b></h5>
+                                        </span>
+                                        <label>Seat</label>
+                                    </div>
+                                </div> -->
+
+
+                            </div>
+
+                        </div>
+                        <div class="card mt-3">
+                            <div class="card-body">
+                                <!-- <div class="col text-center">
+                                        <span>
+                                            <h5><b>IndiGo</b></h5>
+                                     </span>
+                                     <label>Airlines</label>
+                                    </div> -->
+                                <div class="row text-center">
+                                    <div class="col">
+                                        <span>
+                                            <h5><b>IndiGo</b></h5>
+                                        </span>
+                                        <label>Airlines</label>
+
+                                    </div>
+                                    <div class="col ">
+                                        <span>
+                                            <h5><b>21:45</b></h5>
+                                        </span>
+                                        <label>Chennai</label>
+                                    </div>
+                                    <div class="col">
+                                        <span>
+                                            <h5><b>8h 35m</b></h5>
+                                        </span>
+                                        <span>Non stop</span>
+                                    </div>
+                                    <div class="col">
+                                        <span>
+                                            <h5><b>02:15</b></h5>
+                                        </span>
+                                        <label>Madurai</label>
+                                    </div>
+                                    <div class="col">
+                                        <span>
+                                            <h5><b>&#8377; 4,181</b></h5>
+                                        </span>
+                                        <label>Price</label>
+                                    </div>
+                                    <div class="col">
+                                        <button mat-stroked-button color="primary">View Fare</button>
+
+                                    </div>
+                                </div>
+                                <!-- <hr>   
+                                <div class="row text-center">
+                                    <div class="col">
+                                       <mat-icon>calendar_today</mat-icon>
+                                        <span>
+                                               <h5><b>May 30,2023</b></h5>
+                                        </span>
+                                        <label>Date</label>
+                                    </div>
+                                    <div class="col">
+                                        <mat-icon>access_time</mat-icon>
+                                        <span>
+                                               <h5><b>08.00-09.30</b></h5>
+                                        </span>
+                                        <label>Time</label>
+                                    </div>
+                                    <div class="col">
+                                        <br>
+                                        <span>
+                                               <h5><b>2345V</b></h5>
+                                        </span>
+                                        <label>Flight</label>
+                                    </div>
+                                </div>
+                                <hr> -->
+                                <!-- <div class="row text-center">
+                                    <div class="col">
+                                        <span>
+                                               <h5><b>4Adults, 2Childs</b></h5>
+                                        </span>
+                                        <label>Passengers</label>
+                                    </div>
+                                    <div class="col">
+                                        <span>
+                                               <h5><b>Economy</b></h5>
+                                        </span>
+                                        <label>Class</label>
+                                    </div>
+                                    <div class="col">
+                                        <span>
+                                               <h5><b>A23</b></h5>
+                                        </span>
+                                        <label>Seat</label>
+                                    </div>
+                                </div> -->
+
+
+                            </div>
+
+                        </div>
+
+
+
+
+
+                        <!-- <div class="table-responsive customer-bene-list bene-list-desktop mt-3">
+                                <table class="table">
+                                  <thead class="thead-light">
+                                    <tr>
+                                      <th scope="col">Flight</th>
+                                      <th scope="col">Flight Number</th>
+                                      <th scope="col">Form</th>
+                                      <th scope="col">To</th>
+                                      <th scope="col">Bording</th>
+                                      <th scope="col">Departure</th>
+                                      <th scope="col">Class Type</th>
+                                      <th scope="col">Gate</th>
+                                      <th scope="col">Seat Number</th>
+                                      <th scope="col">Status</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody> -->
+                        <!-- Loader and No record found Section  -->
+                        <!-- <tr
+                                      *ngIf=""
+                                      class="text-center"
+                                    >
+                                      <td colspan="6">No Beneficiary Found</td>
+                                    </tr>
+                                    <tr
+                                      *ngIf=""
+                                      class="text-center"
+                                    >
+                                      <td colspan="6">
+                                        <span
+                                          class="loader-bubble loader-bubble-primary ml-4"
+                                        ></span>
+                                      </td>
+                                    </tr> -->
+                        <!--  -->
+                        <!-- <ng-container *ngFor="">
+                                      <tr >
+                                        <th scope="row">
+                                        </th>
+                                        <td>
+                                        </td>
+                    
+                                        <td></td>
+                                        <td>
+                                          
+                                        </td>
+                                        <td>
+                                          <button
+                                            *ngIf=""
+                                            type="button"
+                                            class="btn btn-sm btn-warning btn-rounded m-1"
+                                            
+                                          >
+                                            <i class="text-20 i-Checked-User"></i>
+                                          </button>
+                    
+                                          <button
+                                            *ngIf=""
+                                            type="button"
+                                            class="btn btn-sm btn-success btn-rounded m-1"
+                                          >
+                                            <i class="text-20 i-Checked-User"></i>
+                                          </button>
+                                        </td>
+                                        <td>
+                                          <button
+                                            type="button"
+                                            class="btn btn-primary btn-rounded m-1"
+                                           
+                                          >
+                                            Pay
+                                          </button>
+                                          <button
+                                            type="button"
+                                            
+                                            class="btn btn-sm btn-danger btn-rounded m-1"
+                                          >
+                                            <i class="text-20 i-Delete-File"></i>
+                                          </button>
+                                        </td>
+                                      </tr>
+                                    </ng-container>
+                                  </tbody>
+                                </table>
+                              </div> -->
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

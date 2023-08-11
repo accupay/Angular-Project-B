@@ -1,0 +1,53 @@
+<ngx-ui-loader [pbColor]="'#0b73bc'" [fgsColor]="'#d76826'"></ngx-ui-loader>
+<!-- 
+[logoUrl]="'../../../../../assets/images/icon.png'"
+[text]="'Please wait'"
+-->
+<div class="app-admin-wrap layout-sidebar-large">
+  <div>
+    <app-header-sidebar-large></app-header-sidebar-large>
+  </div>
+  <div class="side-content-wrap">
+    <app-sidebar-large></app-sidebar-large>
+  </div>
+  <div
+    class="main-content-wrap d-flex flex-column"
+    [ngClass]="{ 'sidenav-open': navService.sidebarState.sidenavOpen }"
+    [perfectScrollbar]="{ suppressScrollX: true }"
+  >
+    <div class="breadcrumb apt-breadcrump" *ngIf="headerTitle">
+      <div class="dynamic-title">
+        <h3><i class="text-20"></i> {{ headerTitle }}</h3>
+      </div>
+      <!-- <div class="wallet-amount">
+        <div class="text-20">
+          <div
+            class="loader-bubble loader-bubble-info mr-3"
+            *ngIf="!walletBalance"
+          ></div>
+          <span class="amount mr-3" *ngIf="walletBalance">{{
+            walletBalance
+          }}</span>
+          <i
+            class="reload text-warning text-20 i-Reload"
+            (click)="checkWalletBalance()"
+          ></i>
+        </div>
+      </div> -->
+    </div>
+
+    <div
+      class="separator-breadcrumb border-top"
+      *ngIf="$menuTitle | async"
+    ></div>
+
+    <!-- Router Outlet -->
+    <router-outlet></router-outlet>
+    <div class="flex-grow-1"></div>
+    <!-- <app-footer></app-footer> -->
+    <div class="module-loader" *ngIf="moduleLoading">
+      <div class="spinner spinner-bubble spinner-bubble-primary mr-3"></div>
+    </div>
+  </div>
+</div>
+<app-search *ngIf="searchService.searchOpen"></app-search>

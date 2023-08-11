@@ -1,0 +1,37 @@
+.dis-flex{
+    display: flex;
+}
+.inputbox{
+    width: 39px;
+    border-radius: 6px;
+    text-align: center;
+}
+.bg-color{
+    background-color: #1B3280;
+}
+.w-60{
+    width: 60%;
+}
+.h-150{
+    height: 150%;
+}
+.customer-bene-list {
+    // border-radius: 14px !important;
+    border: 1px solid #ddd;
+    thead {
+      font-size: 15px;
+      th {
+        color:#ffffff !important;
+         background-color: #1B3280 !important;
+      }
+  }
+}
+.bookinglist{
+    overflow: scroll;
+}
+.example-tab-icon {
+    margin-right: 8px;
+  }
+  .bd-color{
+    border-color: #1B3280 !important;
+  }

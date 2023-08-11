@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-md-12">
+      <div class="card mb-4">
+          <div class="card-body">
+              <div class="text-center">
+              <ngx-qrcode [elementType]="elementType" [width]="200" [value]="value" cssClass="coolQRCode" errorCorrectionLevel="H">
+              </ngx-qrcode>
+              
+              <button class="btn btn-primary  m-1" (click)="downloadQRCode()">Download QR Code Image</button>
+              <!-- <qrcode  #parent [qrdata]="myAngularxQrCode" [width]="256" [errorCorrectionLevel]="'H'"></qrcode> -->
+              
+          </div>
+         
+      </div>
+  </div>
+</div>  
+</div>
